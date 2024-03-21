@@ -1,0 +1,56 @@
+•	Calcular el área de un triángulo, un cuadrado o un rectángulo en el espacio 3D.
+% Punto P
+P = [1, 2, 3];
+
+% Ángulo de rotación
+theta = 45 * pi / 180; % 45 grados en radianes
+
+% Matrices de rotación
+Rx = [1, 0, 0;
+     0, cos(theta), -sin(theta);
+     0, sin(theta), cos(theta)];
+
+Ry = [cos(theta), 0, sin(theta);
+     0, 1, 0;
+     -sin(theta), 0, cos(theta)];
+
+Rz = [cos(theta), -sin(theta), 0;
+     sin(theta), cos(theta), 0;
+     0, 0, 1];
+
+% Puntos rotados
+Px = Rx * P;
+Py = Ry * P;
+Pz = Rz * P;
+
+% Graficar los puntos y los ejes
+figure;
+hold on;
+grid on;
+axis equal;
+
+% Ejes
+plot3([0, 10], [0, 0], [0, 0], 'r', 'LineWidth', 2);
+plot3([0, 0], [0, 10], [0, 0], 'g', 'LineWidth', 2);
+plot3([0, 0], [0, 0], [0, 10], 'b', 'LineWidth', 2);
+
+% Puntos
+scatter3(P(1), P(2), P(3), 80, 'k', 'filled');
+scatter3(Px(1), Px(2), Px(3), 80, 'r', 'filled');
+scatter3(Py(1), Py(2), Py(3), 80, 'g', 'filled');
+scatter3(Pz(1), Pz(2), Pz(3), 80, 'b', 'filled');
+
+% Etiquetar los puntos
+text(P(1), P(2), P(3), 'P', 'FontSize', 14);
+text(Px(1), Px(2), Px(3), 'P_x', 'FontSize', 14);
+text(Py(1), Py(2), Py(3), 'P_y', 'FontSize', 14);
+text(Pz(1), Pz(2), Pz(3), 'P_z', 'FontSize', 14);
+
+% Etiquetar los ejes
+xlabel('x');
+ylabel('y');
+zlabel('z');
+
+% Título
+title('Rotación de un punto alrededor de los ejes X, Y y Z');
+
